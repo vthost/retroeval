@@ -1,0 +1,17 @@
+
+BASIC
+- python command arguments need some documentation ('help', 'required')
+- tests for metrics
+- several python command arguments are comma-separated enumerations, may use "Better Version" from here https://stackoverflow.com/a/60205263
+- throw meaningful errors (e.g., argument validity checks)
+- further documentation needed? (e.g., our dataset extraction)
+
+FEATURES
+- different splits in single step runs/evaluation (e.g., as in https://github.com/ml-jku/mhn-react/blob/de0fda32f76f866835aa65a6ff857964302b2178/mhnreact/train.py#L398)
+- cross validation in single step
+- other metrics
+- mss is currently evaluated at one topk, instead of at ks=[1, ...]
+- single-step evaluation: consider potential reaction duplicates only once
+
+LIMITATIONS
+- evaluation based on PARoutes, so routes must be in that format

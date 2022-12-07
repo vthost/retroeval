@@ -1,0 +1,30 @@
+{
+  "module": "examples.wrappers.graphretro",
+  "class": "GraphRetroWrapper",
+  "checkpoints": {
+    "uspto-50k": {
+      "data_dir": "./graphretro/datasets/uspto-50k",
+      "exp_dir": "./graphretro/models",
+      "edits_exp": "SingleEdit_10-02-2021--08-44-37",
+      "edits_step": "epoch_156",
+      "lg_exp": "LGIndEmbed_18-02-2021--12-23-26",
+      "lg_step": "step_101951"
+    },
+    "rt": {
+      "data_dir": "./graphretro/datasets/rt",
+      "exp_dir": "./graphretro/models",
+      "edits_exp": "SingleEdit_rt-20220609_145147-2ckaveu9",
+      "edits_step": "step_63731",
+      "lg_exp": "LGIndEmbed_rt_07-06-2022",
+      "lg_step": "rt_LGInd_model"
+    },
+    "rd": {
+      "data_dir": "./graphretro/datasets/rd",
+      "exp_dir": "./graphretro/models",
+      "edits_exp": "SingleEdit_rd-20220609_152843-35q39eji",
+      "edits_step": "step_168551",
+      "lg_exp": "LGIndEmbed_rd_07-06-2022",
+      "lg_step": "rd_LGInd_model"
+    }
+  }
+}

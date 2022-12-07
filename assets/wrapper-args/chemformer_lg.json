@@ -1,0 +1,9 @@
+{
+  "module": "examples.wrappers.chemformer",
+  "class": "ChemformerWrapper",
+  "checkpoints": {
+    "uspto-50k": {
+      "model_file": "models/chemformer/combined-lg-uspto50k/last.ckpt"
+    }
+  }
+}

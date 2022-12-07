@@ -1,0 +1,11 @@
+{
+  "module": "examples.wrappers.gln",
+  "class": "GLNWrapper",
+  "checkpoints": {
+    "uspto-50k": {
+      "model_file": "./models/gln/schneider50k.ckpt",
+      "template_file": "./models/gln/",
+      "data_name": "schneider50k"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "module": "examples.wrappers.template",
+  "class": "TemplateModelWrapper",
+  "checkpoints": {
+    "uspto-50k": {
+      "model_file": "./models/mlp/mlp_uspto-50k_epoch_10_dummy.pt"
+    }
+  }
+}

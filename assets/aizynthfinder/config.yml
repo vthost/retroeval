@@ -1,0 +1,22 @@
+properties:
+  iteration_limit: 100
+  return_first: false
+  time_limit: 120
+  C: 1.4
+  cutoff_cumulative: 0.995
+  cutoff_number: 10
+  max_transforms: 10
+  search_algorithm: "aizynthfinder.search.retrostar.search_tree.SearchTree"
+policy: # need to select policy, of form "model.checkpoint"
+  "retroeval.aizynth.retrowrapper_expansion_strategy.RetroWrapperBasedExpansionStrategy":
+#    since AIZynthfinder loads EVERYTHING listed here, we keep unused parts commented out
+#    chemformer.uspto-50k:
+#    chemformer_lg.uspto-50k:
+#    g2s.uspto-50k:
+    graphretro.uspto-50k:
+    mlp.uspto-50k:
+stock:
+  files:
+    rt-1k: data/rt-1k/rt-1k-test-istock.txt
+    rd-1k: data/rd-1k/rd-1k-test-istock.txt
+    rt-tpl-100: data/rt-tpl-100/rt-tpl-100-test-istock.txt

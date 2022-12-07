@@ -1,0 +1,10 @@
+{
+  "module": "examples.wrappers.graph2smiles",
+  "class": "Graph2SMILESWrapper",
+  "checkpoints": {
+    "uspto-50k": {
+      "model_type": "g2s_series_rel",
+      "model_file": "./models/g2s/USPTO_50k_dgcn.pt"
+    }
+  }
+}

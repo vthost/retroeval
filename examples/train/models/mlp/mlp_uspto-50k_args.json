@@ -1,0 +1,12 @@
+{
+   "model": "examples.models.mlp.RetroMLP",
+   "model_config": "./examples/configs/mlp_default.json",
+   "data": "uspto-50k",
+   "save_dir": "./models/mlp/",
+   "exp_id": "",
+   "checkpoint": "",
+   "batch_size": 1024,
+   "lr": 0.001,
+   "patience": 50,
+   "epochs": 10000
+}
