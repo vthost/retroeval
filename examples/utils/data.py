@@ -19,5 +19,5 @@ def load_dataset(name, tpls=False, valid_tpls=True):
 
     tpls, tpl_idx = load_templates_from_dfs(df, 'retro_template', index=True,
                                             tpl_parts=["train"] + (["valid"] if valid_tpls else []))
-    # torch.save((prods, reacts, tpl_idx, tpls), f'./data/{name}/{name}-{part}-rxns.pt')
+
     return prods, reacts, tpl_idx, tpls
