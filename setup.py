@@ -6,5 +6,5 @@ setup(
         description='Simple evaluation tools for retrosynthesis models.',
         packages=find_packages(exclude=[]),
         python_requires='>=3.8',
-        # Note: python 3.8 is required aizynthfinder
+        # Note: python 3.8 is required for aizynthfinder
 )

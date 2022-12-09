@@ -137,7 +137,7 @@ def train(model, model_config,
         test = eval_epoch(model, data["test"], device, loss_fn, ks)
 
         scheduler.step(eval["loss"])
-        if best_val < eval["top_1"]+eval["top_10"]:
+        if best_val > eval["top_1"]+eval["top_10"]:
             save_model(model, model_config, f"{path_prefix}_epoch_{e}.pt")
             delete_model(f"{path_prefix}_epoch_{best_epoch}.pt")
             best_epoch = e
