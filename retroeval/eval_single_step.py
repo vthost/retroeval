@@ -71,21 +71,21 @@ def eval_ss_all(models, data, part, results_dir, metrics=["top_k", "mrr"], ks=[1
             all_results_df = all_results_df.append(pd.DataFrame(results).T)
 
     # route-context metrics
-    path = f'./data/{data}/{data}-{part}-rxns.txt'
+    path = f'./data/{data}/{data}-{part}-rxns.csv'
     evaluators = [globals().get(f"{m}") for m in metrics if m in METRICS_ROUTE]
+    route = False  # default
     if evaluators and os.path.exists(path):
-        route = True
-        all_results_df2 = pd.DataFrame()
         t_df = pd.read_csv(path)
-        t_df['reactants'] = t_df['reactants'].apply(canonicalize)
+        if "route_id" in t_df.columns:
+            route = True
+            all_results_df2 = pd.DataFrame()
+            t_df['reactants'] = t_df['reactants'].apply(canonicalize)
 
-        for model in models:
-            results = eval_ss_route_metrics(model, t_df, evaluators, ks, max_k, results_dir)
+            for model in models:
+                results = eval_ss_route_metrics(model, t_df, evaluators, ks, max_k, results_dir)
 
-            all_results_df2 = all_results_df2.append(pd.DataFrame(results).T)
-        all_results_df = pd.concat([all_results_df, all_results_df2], axis=1, join='inner')
-    else:
-        route = False
+                all_results_df2 = all_results_df2.append(pd.DataFrame(results).T)
+            all_results_df = pd.concat([all_results_df, all_results_df2], axis=1, join='inner')
 
     # recording
     all_results_df.columns = get_df_columns(metrics, ks, route=route)
