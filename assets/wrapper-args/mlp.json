@@ -3,7 +3,13 @@
   "class": "TemplateModelWrapper",
   "checkpoints": {
     "uspto-50k": {
-      "model_file": "./models/mlp/mlp_uspto-50k_epoch_10_dummy.pt"
+      "model_file": "./models/mlp/mlp_uspto-50k_epoch_294.pt"
+    },
+    "rt": {
+      "model_file": "./models/mlp/mlp_rt_epoch_321.pt"
+    },
+    "rd": {
+      "model_file": "./models/mlp/mlp_rd_epoch_251.pt"
     }
   }
 }

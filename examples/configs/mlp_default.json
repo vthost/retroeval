@@ -1,9 +1,0 @@
-{
-   "fp_dim": 2048,
-   "hidden_dim": 2048,
-   "out_dim": 0,
-   "layers": 3,
-   "batch_norm": true,
-   "dropout": 0.3,
-   "activation": "elu"
-}

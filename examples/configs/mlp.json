@@ -1,0 +1,11 @@
+{
+   "fp_types": ["morgan", "maacs"],
+   "fp_radii": 2,
+   "fp_dim": 4096,
+   "hidden_dim": 4096,
+   "out_dim": 0,
+   "layers": 2,
+   "batch_norm": true,
+   "dropout": 0.3,
+   "activation": "elu"
+}

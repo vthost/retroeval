@@ -1,5 +1,7 @@
+import re
 import pickle as pickle
 import pandas as pd
+
 from retroeval.utils.mol import canonicalize
 from retroeval.utils.config import *
 
@@ -59,13 +61,20 @@ def load_dataset(name, canonical=True, part='test'):
 
 def load_templates_from_dfs(df_dict, tpl_col, tpl_parts=["train"], index=True):
 
-    df = pd.DataFrame(columns=[tpl_col])[tpl_col]  #df_dict[tpl_parts[0]][tpl_col]
+    s = pd.DataFrame(columns=[tpl_col])[tpl_col]
     for part in tpl_parts:
-        df = df.append(df_dict[part][tpl_col])
-    tpl_idx0, tpls = pd.factorize(df)
+        s = s.append(df_dict[part][tpl_col])
+    s = list(s)
+
+    # need to cope with potential difference in mappings
+    # https://github.com/coleygroup/rxn-ebm/blob/1919eeccdd31e16ec7a44478b756bcd974c35a3c/rxnebm/data/preprocess/clean_smiles.py#L241
+    # lookahead (?=]) to ensure it's the decimal from an atom mapping
+    s_u = [re.sub(':\d+(?=])', '', r) for r in s]
+    tpl_idx0, s_u_fact = pd.factorize(s_u)
+    tpls = [s[s_u.index(u)] for u in s_u_fact]
 
     if not index:
-        return list(tpls)
+        return tpls
 
     tpl_idx, i = {}, 0
     for part in tpl_parts:
@@ -94,3 +103,5 @@ def load_templates(dataset, parts=["train", "valid"]):
 
     tpls = load_templates_from_dfs(dfs, tpl_col, tpl_parts=parts, index=False)
     return tpls
+
+

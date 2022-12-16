@@ -15,7 +15,7 @@ We will make all datasets and model information available soon.
 ## Setup 
 
 We use a [conda](https://www.anaconda.com/) environment `retroeval` and provide a setup script which creates that. 
-Before running the [setup](scripts/setup.sh), please check the `cudatoolkit` version. 
+Before running the [setup](scripts/setup.sh), please adapt the `pytorch-cuda` version to yours (see [here](https://pytorch.org/)). 
 Also note that the script installs the model packages for our example wrappers. 
 If you do not want to have all these dependencies, comment out the last part of the script. 
 They are not needed, a simple MLP (i.e., NeuralSym as suggested by Segler and Waller, 2017) is provided in this repository.
@@ -60,13 +60,13 @@ Please note that the `.sh` files contain only basic options, see the python scri
 
   Per default, the results are stored in `results-ss-${EXP_ID}/${EVALDATA}/${SSMODEL}.pkl`, where we use `CHECKPOINT` as `$EXP_ID`.
 ### Single-step Evaluation
-`./scripts/sseval.sh $SSMODELS $EVALDATA $EXP_ID`
+`./scripts/sseval.sh $SSMODELS $EXP_ID $EVALDATA `
   - `$SSMODELS` the models, comma separated (e.g., `graphretro,mlp`).
   - `$EXP_ID` used to locate the results. 
 
 The command is similar for our dataset with multiple solutions per product:
  
-`./scripts/sseval_multi.sh $SSMODELS $EVALDATA $EXP_ID`
+`./scripts/sseval_multi.sh $SSMODELS $EXP_ID $EVALDATA`
 
 ### Multi-step Run
 `./scripts/msrun.sh $AIZCONFIG "${MODEL}.${CHECKPOINT}" $TARGETS $STOCK`

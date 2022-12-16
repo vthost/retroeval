@@ -23,11 +23,11 @@ class FP(Enum):
 
     @staticmethod
     def values():
-        return [fp for fp in FP]
+        return [fp.value for fp in FP]
 
 
 def calc_fp_dim(fp_dim, fp_types):
-    return fp_dim * (len(fp_types) - 1) + 167 if FP.MAACS in fp_types else fp_dim * len(fp_types)
+    return fp_dim * (len(fp_types) - 1) + 167 if FP.MAACS in fp_types or FP.MAACS.value in fp_types else fp_dim * len(fp_types)
 
 
 def fp_dict_to_np(fp_dict, dim):
@@ -43,7 +43,10 @@ def fp_bitvec_to_np(fp_bitvec):
     return np.frombuffer(fp_bitvec.ToBitString().encode(), 'u1') - ord('0')
 
 
-def mol_to_fp(mol, fp_type: str, dim=2048, radius=2):
+def mol_to_fp(mol, fp_type, dim=2048, radius=2):
+    if isinstance(fp_type, str):
+        fp_type = FP(fp_type)
+
     if fp_type == FP.ATOMPAIR:
         fp = AllChem.GetAtomPairFingerprint(mol).GetNonzeroElements()
     elif fp_type == FP.AVALON:
@@ -77,7 +80,14 @@ def mol_to_fp(mol, fp_type: str, dim=2048, radius=2):
     return fp
 
 
-def encode_smiles(smiles, fp_dim, fp_types=[FP.ECFP], fp_radius=2):
+def encode_smiles(smiles, fp_dim, fp_types=[FP.MORGAN], fp_radii=1):
+    if fp_radii == []:
+        fp_radii = [1]*len(fp_types)
+    elif type(fp_radii) == int:
+        fp_radii = [fp_radii]*len(fp_types)
+    else:
+        assert len(fp_types) == len(fp_radii)
+
     if type(smiles) == str:
         smiles = [smiles]
 
@@ -88,9 +98,9 @@ def encode_smiles(smiles, fp_dim, fp_types=[FP.ECFP], fp_radius=2):
         except:
             fps += [np.zeros(calc_fp_dim(fp_dim, fp_types))]
         fp = []
-        for fp_type in fp_types:
+        for i, fp_type in enumerate(fp_types):
             try:
-                fp += [mol_to_fp(mol, fp_type, dim=fp_dim, radius=fp_radius)]
+                fp += [mol_to_fp(mol, fp_type, dim=fp_dim, radius=fp_radii[i])]
             except:
                 fp += [np.zeros(167) if fp_type == FP.MAACS else np.zeros(fp_dim)]
         fps += [np.concatenate(fp)]
@@ -102,11 +112,12 @@ def encode_smiles(smiles, fp_dim, fp_types=[FP.ECFP], fp_radius=2):
 if __name__ == "__main__":
     fpd = calc_fp_dim(20, fp_types=FP.values())
 
-
     smi = "CCCC[C@@H](C(=O)N1CCC[C@H]1C(=O)O)[C@@H](F)C(=O)OC"
     mol = Chem.MolFromSmiles(smi)
     for fpt in FP:
-        print(fpt.name)
-        print(mol_to_fp(mol, fpt))
+        print(fpt.name, fpt.value)
+        fp = mol_to_fp(mol, fpt)
+        print(fp)
+        assert np.sum(fp) > 0
 
     encode_smiles(smi, 2048, fp_types=FP.values())

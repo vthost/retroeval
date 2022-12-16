@@ -17,8 +17,8 @@ if [ $# -eq 0 ]
     echo "No arguments supplied, using default models 'mlp', data uspto-ms"
   else
     SSMODELS=$1
-    DATASET=$2
-    EXP_ID=$3
+    DATASET=$3
+    EXP_ID=$2
 fi
 
 echo Starting model evaluation!

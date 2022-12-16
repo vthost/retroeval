@@ -26,7 +26,7 @@ mv bart_vocab.txt models/chemformer/
 # Graphretro
 pip install wandb # just that their code does not break
 python -m pip install git+https://github.com/vsomnath/graphretro.git@4dfb03407e77c03d4dfcf8fe29761d8a12d4ae55
-# Graph2SMILES - relative imports not yet working at runtime
+# Graph2SMILES - relative imports not working at runtime
 #git clone https://github.com/coleygroup/Graph2SMILES.git
 #conda install -y torchtext -c pytorch
 #pip install gdown OpenNMT-py==1.2.0 networkx==2.5 selfies==1.0.3

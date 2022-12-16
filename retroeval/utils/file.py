@@ -7,6 +7,14 @@ def save_args(path_prefix, args):
         json.dump(args.__dict__, open(path_prefix + '_args.json', 'w'), indent=3)
 
 
+# main value of this is float formatting
+def get_metrics_str(results_dict):
+    s = ""
+    for k, v in results_dict.items():
+            s += f"{k}: {v:.8f} // " if k == "loss" else f"{k}: {v:.4f} // "
+    return s
+
+
 def dict_to_plt(dictionary, path=""):
     s = "x\ty\n"
     dictionary = dict(sorted(dictionary.items()))
