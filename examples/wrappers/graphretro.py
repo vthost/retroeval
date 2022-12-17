@@ -69,10 +69,7 @@ class GraphRetroWrapper(SingleStepModelWrapper):
     def _run(self, mol_smiles: str):
         beam_model = self.model
         reacts, scores = [], []
-        try:
-        #  beam_model.run_search throws exceptions eg
-        #         c_atom_starts = index_select_ND(c_atom, dim=0, index=graph_tensors[-1][:, 0])
-        # IndexError: index 0 is out of bounds for dimension 1 with size 0
+        try:  #  beam_model.run_search sometime throws exceptions
             p = canonicalize_prod(mol_smiles)
             top_k_nodes = beam_model.run_search(p, max_steps=6)
 

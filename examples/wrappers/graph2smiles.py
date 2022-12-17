@@ -39,7 +39,7 @@ class G2SDataset(G2S1):
         self.vocab_tokens = [k for k, v in sorted(self.vocab.items(), key=lambda tup: tup[1])]
 
         # logging.info(f"Loading preprocessed features from {file}")
-        feat = preprocess(src_lines, self.vocab, 512)  # todo
+        feat = preprocess(src_lines, self.vocab, 512)  # TODO check
         for attr in ["a_scopes", "b_scopes", "a_features", "b_features", "a_graphs", "b_graphs",
                      "a_scopes_lens", "b_scopes_lens", "a_features_lens", "b_features_lens",
                      "src_token_ids", "src_lens", "tgt_token_ids", "tgt_lens"]:

@@ -1,6 +1,3 @@
-# https://stackoverflow.com/questions/53014306/error-15-initializing-libiomp5-dylib-but-found-libiomp5-dylib-already-initial
-# import os
-# os.environ['KMP_DUPLICATE_LIB_OK']='True'
 from examples.utils.model import load_model
 from retroeval.model import SingleStepModelWrapper
 from retroeval.model.factory import create_single_step_model

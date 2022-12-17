@@ -28,15 +28,14 @@ NONLINEARITY = {
 }
 
 
-def load_model(path, config=False): #, device='cpu', **kwargs):  # we currently do not load the kwargs we may store
+def load_model(path, config=False):  # **kwargs):  # we currently do not load the kwargs we may store
     data = torch.load(path)
 
     mod = importlib.import_module(data['module'])
     cls = getattr(mod, data['class_name'])
-    model_config = data['model_config']  #Namespace(**data['model_config'])
+    model_config = data['model_config']
     ins = cls(**model_config)
     ins.load_state_dict(data['model_state_dict'], strict=False)
-    # state_dict = data['model_state_dict'] #torch.load(path, map_location=torch.device(device) if torch.cuda.is_available() else torch.device('cpu'))
     if config:
         return ins, model_config
     return ins
@@ -66,5 +65,4 @@ def init_model(module, class_name, config_dict, state_dict=None):
     ins = cls(**config_dict)
     if state_dict:
         ins.load_state_dict(state_dict, strict=False)
-    # state_dict = data['model_state_dict'] #torch.load(path, map_location=torch.device(device) if torch.cuda.is_available() else torch.device('cpu'))
     return ins

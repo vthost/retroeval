@@ -9,9 +9,9 @@ Please note that we gave our best to follow the original code in how the models 
 Examples are currently available for these models:
 
 - Chemformer: https://github.com/MolecularAI/Chemformer.
-- Graph2SMILES: https://github.com/coleygroup/Graph2SMILES.
-- Graphretro: https://github.com/vsomnath/graphretro. There is currently an import issue with this model. Once it has been resolved (on their end), GraphRetro should work. We are working on this. 
-- MLP: Code in [`examples/models`](../models). 
+- Graph2SMILES: https://github.com/coleygroup/Graph2SMILES. (there is an import issue currently, we are working on resolving that)
+- Graphretro: https://github.com/vsomnath/graphretro. 
+- MLP: Code and description in [`examples/models`](../models/README.md). 
 
  Note that we also provide the code for [GLN](https://github.com/Hanjun-Dai/GLN), yet, we were unable to create a reproducible environment setup. Please follow the instructions in the original repository if you want to run that model. 
 
