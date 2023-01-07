@@ -8,17 +8,12 @@ We created a wrapper interface for single-step models and also provide code that
 Examples for some models suggested in the literature and a short explanation on how to add your own wrapper are provided in [`examples/wrappers`](examples/wrappers). 
 
 
-**Please Note**
-We will make all datasets and model information available soon.
-
-
 ## Setup 
 
 We use a [conda](https://www.anaconda.com/) environment `retroeval` and provide a setup script which creates that. 
 Before running the [setup](scripts/setup.sh), please adapt the `pytorch-cuda` version to yours (see [here](https://pytorch.org/)). 
-Also note that the script installs the model packages for our example wrappers. 
-If you do not want to have all these dependencies, comment out the last part of the script. 
-They are not needed, a simple MLP (i.e., NeuralSym as suggested by Segler and Waller, 2017) is provided in this repository.
+Also note that the script contains commands to install the model packages for our example wrappers. 
+These dependencies are commented out per default since they are not needed, a simple MLP (i.e., NeuralSym as suggested by Segler and Waller, 2017) is provided in this repository.
 Note that, to run a custom wrapper, you might have to install additional dependencies. 
 
 Then run:
@@ -29,24 +24,15 @@ We tested the environment on Ubuntu and Mac OS (Intel).
 
 ## Data & Models
 
-Coming soon.
+All datasets and checkpoints we created are available [here](http://neurips.s3.us-east.cloud-object-storage.appdomain.cloud/index.html).
 
-[//]: # (This repository contains [our smaller test sets]&#40;data&#41; and [checkpoints for MLP].)
+Run ``./scripts/download.sh`` to obtain the datasets. Since the full rt and rd datasets are larger (each nearly 1GB), they are per default commented out in the script.
 
-[//]: # ()
-[//]: # (Run ``./scripts/download.sh`` to obtain the full datasets and checkpoints for all models. Note that the latter together require around XX of storage, therefore they are per default commented out in the script.)
+**Please Note**
+We will make USPTO-ms available soon as well.
 
-[//]: # ()
-[//]: # ([//]: # &#40;The data and models&#41;)
-[//]: # ()
-[//]: # ([//]: # &#40;- The data we used can be downloaded [here]&#40;TODO-LINK&#41;, please move it into this repository at root level.&#41;)
-[//]: # ()
-[//]: # ([//]: # &#40;- We provide our model checkpoints for the examples [here]&#40;TODO-LINK&#41;, please move them into this repository at root level &#40;or create a symbolic link to somewhere external, the full file is large `ln -s $EXTERNAL/models models`&#41;. &#41;)
-[//]: # (The configurations we used are documented in [`assets/docs`]&#40;a-todo/exp_config.txt&#41;. )
-
-[//]: # ()
-[//]: # ([//]: # &#40;Please see [`examples/wrappers`]&#40;examples/wrappers/README.md&#41; for links to the checkpoints provided by others.&#41;)
-
+Run ``./scripts/checkpoints.sh`` to obtain the checkpoints we used.
+Please see [`examples/wrappers`](examples/wrappers/README.md) for links to the code and descriptions provided by others.
 ## Usage
 
 The [`scripts`](scripts) directory contains the code we used for dataset creation, analysis, and, especially, the following example commands for the experiments we ran.

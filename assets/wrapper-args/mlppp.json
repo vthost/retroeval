@@ -1,0 +1,15 @@
+{
+  "module": "examples.wrappers.template",
+  "class": "TemplateModelWrapper",
+  "checkpoints": {
+    "uspto-50k": {
+      "model_file": "./models/mlppp/mlp_uspto-50k_epoch_199.pt"
+    },
+    "rt": {
+      "model_file": "./models/mlppp/mlp_rt_epoch_279.pt"
+    },
+    "rd": {
+      "model_file": "./models/mlppp/mlp_rd_epoch_389.pt"
+    }
+  }
+}

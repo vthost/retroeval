@@ -1,0 +1,58 @@
+Below, we describe the experiment configurations for our paper.
+
+CHEMFORMER(-LARGE)
+For fine-tuning, we used exactly the scripts and commands (see below) provided at https://github.com/MolecularAI/Chemformer/blob/main/example_scripts/fine_tune.sh.
+The data pickle files were created with the script provided in scripts/examples/preprocess.
+For evaluation, please see examples/wrappers/chemformer.py
+
+Training command:
+
+python -m molbart.fine_tune \
+  --dataset $DATASET --log_dir /dccstor/vthost-data/chemformer \
+  --data_path "../assets/chemformer/${DATASET}.pickle" \
+  --model_path $STORE/chemformer/combined/step=1000000.ckpt \
+  --task backward_prediction \
+  --epochs 500 \
+  --lr 0.001 \
+  --schedule cycle \
+  --batch_size 128 \
+  --acc_batches 4 \
+  --augment all \
+  --aug_prob 0.5
+
+Graph2SMILES
+We used the trained model provided by the authors.
+For evaluation, please see examples/wrappers/g2s.py.
+
+GRAPHRETRO
+We used the trained model provided by the authors.
+For evaluation, please see examples/wrappers/graphretro.py.
+
+MHN
+We trained using the code and scripts from https://github.com/ml-jku/mhn-react.
+Due to the code's license restrictions we are unable to publish a wrapper, since it would re-use part of the functionality in that repository.
+
+NeuralSym++
+We used the model in examples/models/mlp.py but the fingerprints and training code from https://github.com/ml-jku/mhn-react.
+For training, we used the below configuration. However, we adapted the code to ignore training/validation templates occuring only once and used top-5 as validation metric.
+
+--model_type mlp
+--device best
+--fp_size 30000
+--fp_type maccs+morganc+topologicaltorsion+erg+atompair+pattern+rdkc+layered+mhfp
+--fp_radius 2
+--batch_size 512
+--encoder_af SELU
+--epochs 500
+--patience 20
+--lr 5e-4
+--hopf_asso_dim 4096
+--dropout 0.3
+--addval2train True
+--layers 2
+
+At the time of the experiments, for the evaluation, we used the above-mentioned wrapper for MHN. However, our new template-based wrapper provides basically the same functionality.
+
+For Neuralsym(+), we used exactly the same processing but restricted the fingerprint type to morgan and dimension to 4096.
+Note that we obtained very similar results for 2-3 layers, dropout 0.1-0.3, and hidden dimension between 2048-4096; and those were similar to using 1 layer and dropout 0.1.
+We also did not observe great variation in the results when using loss, top-1 or top-50 as validation metrics.
