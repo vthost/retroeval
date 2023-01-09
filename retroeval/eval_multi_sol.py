@@ -26,13 +26,13 @@ def eval_ss_multisol(model, t_reacts_lst, evaluators, ks, max_k, results_dir):
 
         for e in evaluators:
             results += [e(t_reacts, p_reacts, ks=ks)]
-        break
-    results = np.concatenate(results).reshape(1, -1).mean(0) #len(t_reacts), -1).mean(0)
+
+    results = np.concatenate(results).reshape(len(t_reacts_lst), -1).mean(0)
     return results
 
 
-def eval_ss_multisol_all(models, data, part, results_dir, metrics=["top_k", "mrr"], ks=[1, 5, 10], max_k=50,
-             out=["csv", "latex"], plot=["top-1", "top-10"]):
+def eval_ss_multisol_all(models, data, part, results_dir, metrics=["rec_k"], ks=[1, 5, 10], max_k=50,
+             out=["csv", "latex"], plot=[]):
 
     # regular metrics
     all_results_df = pd.DataFrame()
@@ -74,7 +74,7 @@ if __name__ == "__main__":
     parser.add_argument('--results_dir', type=str, default="")
     # only used to locate default results_dir if that is not provided
     parser.add_argument('--exp_id', type=str, default="uspto-50k")
-    parser.add_argument('--metrics', type=str, default="r_k")
+    parser.add_argument('--metrics', type=str, default="rec_k")
     parser.add_argument('--ks', type=str, default="1,3,5,10")
     parser.add_argument('--out', type=str, default="csv")
     parser.add_argument('--plot', type=str, default="")

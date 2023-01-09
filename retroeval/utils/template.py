@@ -2,8 +2,6 @@ from collections import defaultdict
 from rdchiral import main
 from rdchiral.initialization import rdchiralReaction, rdchiralReactants
 
-from retroeval.utils.config import DATASET_INFO
-
 
 # GLN's Reactor adapted
 class _TemplateRunner(object):
@@ -51,12 +49,16 @@ class _TemplateRunner(object):
 TemplateRunner = _TemplateRunner()
 
 
+def default_list_dict_factory():
+    return defaultdict(list)
+
+
 # Note we here consider a multi-solution format in task, i.e., all_reacts is a list of possibly multiple solutions
 def match_templates(tpl_smarts_list, task):
     prod, all_reacts = task
     print(prod)
 
-    tpl_succ = defaultdict(lambda: defaultdict(list))
+    tpl_succ = defaultdict(default_list_dict_factory)  # we use this with multiprocessing which doesn't support lambda
     tbd = [reacts for reacts in all_reacts]
 
     for i, tpl in enumerate(tpl_smarts_list):
@@ -70,7 +72,7 @@ def match_templates(tpl_smarts_list, task):
                 if reacts in tbd:
                     tbd.remove(reacts)
 
-    n_found, n_tbd = len(reacts) - len(tbd), len(tbd)
+    n_found, n_tbd = len(all_reacts) - len(tbd), len(tbd)
     n_found1 = 1 if n_found > 0 else 0  # True
     return n_found1, n_found, n_tbd, tpl_succ
 

@@ -44,7 +44,7 @@ def _load_dataset(name, part):
 def load_dataset(name, canonical=True, part='test'):
     if name in DATASET_INFO:
         prods, reacts = _load_registered_dataset(DATASET_INFO[name][part])
-    else:
+    else:  # TODO exceptions...
         # our format, but may not be give explicitly ie we also allow for just the name and then assume 'test'
         for _part in ["train", "valid", "test"]:
             if name.endswith(_part):

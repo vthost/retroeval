@@ -10,14 +10,14 @@ Examples for some models suggested in the literature and a short explanation on 
 
 ## Setup 
 
-We use a [conda](https://www.anaconda.com/) environment `retroeval` and provide a setup script which creates that. 
-Before running the [setup](scripts/setup.sh), please adapt the `pytorch-cuda` version to yours (see [here](https://pytorch.org/)). 
+We use a [conda](https://www.anaconda.com/) environment `retroeval` and provide [a setup script](scripts/setup.sh) which creates that. 
+Before running the setup, please adapt the `pytorch-cuda` version to yours (see [here](https://pytorch.org/)). 
 Also note that the script contains commands to install the model packages for our example wrappers. 
-These dependencies are commented out per default since they are not needed, a simple MLP (i.e., NeuralSym as suggested by Segler and Waller, 2017) is provided in this repository.
+These dependencies are commented out per default since they are not needed, a simple MLP (i.e., NeuralSym as suggested by Segler and Waller, 2017) [is provided in this repository](examples/models/README.md).
 Note that, to run a custom wrapper, you might have to install additional dependencies. 
 
 Then run:
-``./scripts/setup.sh``
+[``./scripts/setup.sh``](scripts/setup.sh)
 
 We tested the environment on Ubuntu and Mac OS (Intel).
 
@@ -26,7 +26,7 @@ We tested the environment on Ubuntu and Mac OS (Intel).
 
 All datasets and checkpoints we created are available [here](http://neurips.s3.us-east.cloud-object-storage.appdomain.cloud/index.html).
 
-Run ``./scripts/download.sh`` to obtain the datasets. Since the full rt and rd datasets are larger (each nearly 1GB), they are per default commented out in the script.
+Run [``./scripts/download.sh``](scripts/download.sh) to obtain the datasets. Since the full rt and rd datasets are larger (each nearly 1GB), they are per default commented out in the script.
 
 **Please Note**
 We will make USPTO-ms available soon as well.

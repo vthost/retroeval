@@ -3,7 +3,7 @@
 
 We provide code and checkpoints for MLPs, which already yield decent performance.
 We trained two models MLP and MLP++ (using a larger fingerprint) over three datasets USPTO-50k, USPTO-rt, and USPTO-rd, using both the training and validation set.
-The exact training configurations are given in [examples/configs](../../examples/configs).
+The exact model configurations are given in [examples/configs](../../examples/configs).
 
 Please note, the results vary slightly from the ones in our paper since:
 - We updated the configurations.

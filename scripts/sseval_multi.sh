@@ -9,7 +9,7 @@ export PYTHONPATH=$PYTHONPATH:$REPO
 
 SSMODELS=mlp
 DATASET=uspto-ms
-METRICS="r_k"
+METRICS="rec_k"
 EXP_ID="uspto-50k"
 
 if [ $# -eq 0 ]
