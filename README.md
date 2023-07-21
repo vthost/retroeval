@@ -7,6 +7,9 @@ The code accompanies the paper [Retrosynthesis Prediction Revisited](https://ope
 We created a wrapper interface for single-step models and also provide code that makes it usable in the multi-step tool [AIZynthFinder](https://github.com/MolecularAI/aizynthfinder). Then we use [PARoutes](https://github.com/MolecularAI/PaRoutes) to analyze the results. 
 Examples for some models suggested in the literature and a short explanation on how to add your own wrapper are provided in [`examples/wrappers`](examples/wrappers). 
 
+*Edit Note:
+When recomputing the numbers for the paper, we observed that we had accidentally used the wrong templates
+in the last two charts in Fig. 4 in our original calculations. The correct numbers are 93%/7% in both.*
 
 ## Setup 
 
