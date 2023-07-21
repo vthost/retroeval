@@ -3,7 +3,7 @@ from rxnutils.chem.reaction import ChemicalReaction
 from rxnutils.chem.utils import remove_atom_mapping
 
 
-# preprocess, originally used for uspto-50k
+# preprocess
 def process(in_file, out_file):  # other columns are id, class
     rxns = pd.read_pickle(in_file)  # list of atom-mapped reaction smiles strings
     p = in_file.replace("_canon","").replace(".pickle", "_ids.pickle")
