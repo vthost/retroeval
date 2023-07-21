@@ -97,6 +97,7 @@ def encode_smiles(smiles, fp_dim, fp_types=[FP.MORGAN], fp_radii=1):
             mol = Chem.MolFromSmiles(smi)
         except:
             fps += [np.zeros(calc_fp_dim(fp_dim, fp_types))]
+            continue
         fp = []
         for i, fp_type in enumerate(fp_types):
             try:
